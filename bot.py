@@ -35,10 +35,28 @@ def Achar_Imagem_Tela(img):
 acabouPP = False
 pp_total = 15
 contador_pp = 0
+x = False
 
 #Colocando botão para ligar/parar
 while keyboard.is_pressed('q') is False:
     while not Achar_Imagem_Tela('captcha'):
+        if x is False:
+            print('Preparando para Iniciar')
+            if Achar_Imagem_Tela('poke_center'):
+                time.sleep(2)
+                Clicar_Imagem('poke_center')
+                print('Entrando Poke Center')
+                time.sleep(2)
+                Clicar_Imagem('heal')
+                print('Curando ~~')
+                time.sleep(2)
+                if Achar_Imagem_Tela('heal_success'):
+                    acabouPP = False
+                    contador_pp = 0
+                    x = True
+                    print('Pokemons curados com sucesso!')
+                    time.sleep(2)
+
         #Ação necessária para manter rodando se o PP acabar
         if acabouPP is True:
             print('Sem PP')
@@ -50,7 +68,7 @@ while keyboard.is_pressed('q') is False:
                 Clicar_Imagem('heal')
                 print('Curando ~~')
                 time.sleep(2)
-                if Achar_Imagem_Tela('heal_sucess'):
+                if Achar_Imagem_Tela('heal_success'):
                     acabouPP = False
                     contador_pp = 0
                     print('Pokemons curados com sucesso!')
